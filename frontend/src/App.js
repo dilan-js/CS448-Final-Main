@@ -2,16 +2,18 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-
+import React, {useState} from 'react';
 import Landing from "./screens/Landing";
 import SignUp from "./screens/SignUp";
 import VisualImpairment from "./screens/VisualImpairment";
 import VisualExplanation from "./screens/VisualExplanation";
 import HearingImpairment from "./screens/HearingImpairment";
 import HearingExplanation from "./screens/HearingExplanation";
-import DirectionsOne from "./screens/DirectionsOne";
-import DirectionsTwo from "./screens/DirectionsTwo";
+import DirectionsOne from "./screens/Tutorial/DirectionsOne";
+import DirectionsTwo from "./screens/Tutorial/DirectionsTwo";
 import Quiz from "./screens/Quiz";
+import Tutorial from "./screens/Tutorial";
+import Begin from "./screens/Experiment/BeginPage";
 
 
 //browser router is the issue.
@@ -19,6 +21,9 @@ import Quiz from "./screens/Quiz";
 // Store the data here in this component
 
 function App() {
+  const [questions, setQuestions] = useState([]);
+
+  console.log({questions});
   return (
     <BrowserRouter>
       <div className="App">
@@ -30,7 +35,11 @@ function App() {
         <Route exact path="/hearingex" component={HearingExplanation} />
         <Route exact path="/directions1" component={DirectionsOne} />
         <Route exact path="/directions2" component={DirectionsTwo} />
-        <Route exact path="/page9" component={Quiz} />
+        <Route exact path="/tutorial" component={Tutorial} />
+        <Route exact path="/test" component={Quiz} />
+        <Route exact path="/begin" render={(props) => (
+    <Begin {...props} setQuestions={setQuestions} />
+  )} />
        
       </div>
     </BrowserRouter>

@@ -7,7 +7,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 const User = require("./database/models/User");
-const { Question } = require("./database/models/Question");
+const Question = require("./database/models/Question");
 // const authMiddleware = require("./middleware/authMiddleware");
 // const gm = require("gm");
 const fs = require("fs");
@@ -44,7 +44,7 @@ app.post("/api/register", async (req, res) => {
     console.log({reqBody: req.body});
     const user = new User(req.body);
     const savedUser = await user.save();
-    res.status(200).send({msg: "Success", userId: savedUser._id});
+    res.status(200).send({msg: "Success", userId: savedUser._id, groupCode: savedUser.groupCode});
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Something failed" });
@@ -72,6 +72,36 @@ app.post("/api/impairmentExplanation", async (req, res) => {
     res.status(500).json({ msg: "Something failed" });
   }
 });
+
+
+app.get("/api/retrieveQuestions/:userId/:groupCode", async (req, res) => {
+  try {
+    console.log(req.params);
+    const {userId, groupCode} = req.params;
+    console.log({userId, groupCode});
+    var responseArray = [];
+    const foundUser = await User.find({_id: userId});
+    if(foundUser){
+      if(groupCode == 'A'){
+        //sound bytes last
+        const nonSoundQuestions = await Question.find({soundURL: {$exists: false}});
+        responseArray.push(nonSoundQuestions);
+        const soundQuestions = await Question.find({soundURL: {$exists: true}});
+        responseArray.push(soundQuestions);
+        console.log(responseArray);
+
+      }
+      res.status(200).send({msg: "Success", questionArray: responseArray});
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something failed" });
+  }
+});
+
+
+
+
 
 
 // The "catchall" handler: for any request that doesn't

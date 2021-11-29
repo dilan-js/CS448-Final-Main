@@ -1,14 +1,16 @@
 import React, {useReducer, useEffect} from 'react'
 
-import Question1 from './Experiment/Question1';
-import QuestionSound2 from './Experiment/QuestionSound2';
-import Answer3 from './Experiment/AnswerQuestion3';
+import Page9 from './Tutorial/Page9';
+import Page10 from "./Tutorial/Page10";
+import Page11 from "./Tutorial/Page11";
+import Page12 from "./Tutorial/Page12";
+import Page13 from "./Tutorial/Page13";
+import Page14 from "./Tutorial/Page14";
 
-const steps = [Question1, QuestionSound2, Answer3];
+const steps = [Page9, Page10, Page11, Page12, Page13, Page14];
 const reducer = (state, action) => {
     switch(action.type){
         case 'next': 
-            console.log({state});
             return state+1;
         case 'return':
             return action.step;
@@ -17,7 +19,7 @@ const reducer = (state, action) => {
     }
 }
 
-export default function Quiz() {
+export default function Tutorial() {
     const [pageIndex, dispatchPageIndex] = useReducer(reducer, 0);
     const Page = steps[pageIndex];
     useEffect(() => {

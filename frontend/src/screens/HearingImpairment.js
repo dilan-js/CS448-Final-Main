@@ -24,7 +24,7 @@ export default function Page3() {
       .post(`handleImpairment`, {impairment: 'hearing', userId: localStorage.getItem("userId"), isImpaired})
       .then((res) => {
         console.log({res});
-        history.push(isImpaired ? "/hearingex" : "/page7");
+        history.push(isImpaired ? "/hearingex" : "/directions1");
         // localStorage.setItem("userInfo", JSON.stringify(userInfo));
         // setLocalSuccess(true);
         // console.log("ALL GOOD");

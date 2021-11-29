@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputGroup, Button, FormControl } from "react-bootstrap";
-import CustomNavbar from "../components/CustomNavbar";
+import CustomNavbar from "../../components/CustomNavbar";
 import { useHistory } from "react-router-dom";
 
 export default function DirectionsTwo() {
@@ -22,7 +22,7 @@ export default function DirectionsTwo() {
       </div>
       <div style={styles.main}>
         <Button
-          onClick={() => history.push("/page9")}
+          onClick={() => history.push("/tutorial")}
           style={styles.button}
           variant="primary"
         >

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { InputGroup, Button, FormControl } from "react-bootstrap";
-import CustomNavbar from "../components/CustomNavbar";
+import CustomNavbar from "../../components/CustomNavbar";
 
 import { useHistory } from "react-router-dom";
 

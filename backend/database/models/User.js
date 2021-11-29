@@ -27,6 +27,10 @@ const userSchema = new Schema(
       type: String, 
       required: false, 
     },
+    groupCode:{
+      type: String, 
+      required: true
+    },
     hearingImpaired:{
       type: Boolean, 
       default: false

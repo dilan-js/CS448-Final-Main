@@ -11,6 +11,7 @@ export default function Page2() {
     lastName: "",
     email: "",
     age:"",
+    groupCode: "",
   });
 
   const handleSubmit = (e) => {
@@ -21,6 +22,7 @@ export default function Page2() {
       .then((res) => {
         console.log({res});
         localStorage.setItem("userId",res.data.userId);
+        localStorage.setItem("groupCode", res.data.groupCode);
         history.push("/visual");
         // localStorage.setItem("userInfo", JSON.stringify(userInfo));
         // setLocalSuccess(true);
@@ -88,6 +90,16 @@ export default function Page2() {
   <option value="30-36">30-36</option>
   <option value=">37">{`>37`}</option>
 </Form.Select>
+  <Form.Select style={styles.formSelect} onChange={(e) =>
+                setPersonalInfo((prev) => ({
+                  ...prev,
+                  groupCode: e.target.value,
+                }))
+              } aria-label="Enter your group code">
+  <option>Enter your group code</option>
+  <option value="A">A</option>
+  <option value="B">B</option>
+</Form.Select>
  
   <Button  style={styles.button} variant="primary" type="submit">
     Submit
@@ -139,4 +151,7 @@ const styles = {
     fontSize: 30,
     fontWeight: 700,
   },
+  formSelect:{
+    marginTop: 30
+  }
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import CustomNavbar from "../components/CustomNavbar";
 import { Button, Badge } from "react-bootstrap";
@@ -6,6 +6,10 @@ import { useHistory } from "react-router-dom";
 
 export default function Page1() {
   const history = useHistory();
+
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
 
   return (
     <>

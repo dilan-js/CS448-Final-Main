@@ -7,35 +7,50 @@ import {
   ToggleButton,
   FormControl,
 } from "react-bootstrap";
-import CustomNavbar from "../components/CustomNavbar";
 
-import Graph from "../assets/as3.png";
+import { useHistory } from "react-router-dom";
 
-export default function Page14({dispatchPageIndex}) {
+import CustomNavbar from "../../components/CustomNavbar";
+import { useAudioPlayer } from "react-use-audio-player"
+
+
+import Graph from "../../assets/as3.png";
+
+export default function Page10({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState("-30");
-
+  const [startDate] = useState(new Date());
+  const [radioValue, setRadioValue] = useState("No");
 
   const radios = [
-    { name: "-90%", value: -90 },
-    { name: "-70%", value: -70 },
-    { name: "-50%", value: -50 },
-    { name: "-30%", value: -30 },
-    { name: "-10%", value: -10 },
-    { name: "?", value: -1 },
-    { name: "10%", value: 10 },
-    { name: "30%", value: 30 },
-    { name: "50%", value: 50 },
-    { name: "70%", value: 70 },
-    { name: "90%", value: 90 },
+    { name: "-90%", value: "-90" },
+    { name: "-70%", value: "-70" },
+    { name: "-50%", value: "-50" },
+    { name: "-30%", value: "-30" },
+    { name: "-10%", value: "-10" },
+    { name: "?", value: "N/A" },
+    { name: "10%", value: "10" },
+    { name: "30%", value: "30" },
+    { name: "50%", value: "50" },
+    { name: "70%", value: "70" },
+    { name: "90%", value: "90" },
   ];
+
   console.log({ radioValue });
+
+  const handleSubmit = () => {
+    const endDate = new Date();
+    const elapsedTime = endDate.getTime() - startDate.getTime();
+    console.log({elapsedTime});
+    dispatchPageIndex({type: 'next'});
+  }
+
+
   return (
     <>
       <CustomNavbar />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={styles.directions}>
-          Question 2: What is bar B in terms of bar A?
+          Question 1: What is bar B in terms of bar A?
         </div>
         <div style={styles.main}>
           <ButtonGroup style={styles.buttonGroupDiv}>
@@ -57,7 +72,7 @@ export default function Page14({dispatchPageIndex}) {
                 name="radio"
                 value={radio.value}
                 checked={radioValue === radio.value}
-                // onChange={(e) => setRadioValue(e.currentTarget.value)}
+                onChange={(e) => setRadioValue(e.currentTarget.value)}
               >
                 {radio.name !== "?" ? (
                   <>
@@ -81,13 +96,12 @@ export default function Page14({dispatchPageIndex}) {
             ))}
           </ButtonGroup>
         </div>
-        <div>{`"-30%" is the answer!`}</div>
         <Button
-          onClick={() => console.log("hey")}
+          onClick={handleSubmit}
           style={styles.button}
           variant={radioValue !== "No" ? "primary" : "secondary"}
         >
-          {radioValue !== "No" ? "Got it!" : "Submit & Continue"}
+          {radioValue !== "No" ? "Submit & Continue" : "Submit & Continue"}
         </Button>
       </div>
     </>

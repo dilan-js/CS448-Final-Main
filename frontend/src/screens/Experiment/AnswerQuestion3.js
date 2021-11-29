@@ -7,16 +7,19 @@ import {
   ToggleButton,
   FormControl,
 } from "react-bootstrap";
-import CustomNavbar from "../components/CustomNavbar";
 
 import { useHistory } from "react-router-dom";
 
-import Graph from "../assets/as3.png";
+import CustomNavbar from "../../components/CustomNavbar";
+import { useAudioPlayer } from "react-use-audio-player"
 
-export default function Page11({dispatchPageIndex}) {
+
+import Graph from "../../assets/as3.png";
+
+export default function AnswerQuestion3({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState("-30");
-  const history = useHistory();
+  const [startDate] = useState(new Date());
+  const [radioValue, setRadioValue] = useState("No");
 
   const radios = [
     { name: "-90%", value: "-90" },
@@ -33,6 +36,15 @@ export default function Page11({dispatchPageIndex}) {
   ];
 
   console.log({ radioValue });
+
+  const handleSubmit = () => {
+    const endDate = new Date();
+    const elapsedTime = endDate.getTime() - startDate.getTime();
+    console.log({elapsedTime});
+    dispatchPageIndex({type: 'next'});
+  }
+
+
   return (
     <>
       <CustomNavbar />
@@ -60,7 +72,7 @@ export default function Page11({dispatchPageIndex}) {
                 name="radio"
                 value={radio.value}
                 checked={radioValue === radio.value}
-                // onChange={(e) => setRadioValue(e.currentTarget.value)}
+                onChange={(e) => setRadioValue(e.currentTarget.value)}
               >
                 {radio.name !== "?" ? (
                   <>
@@ -84,13 +96,12 @@ export default function Page11({dispatchPageIndex}) {
             ))}
           </ButtonGroup>
         </div>
-        <div>{`"-30%" is the answer!`}</div>
         <Button
-          onClick={() => history.push("/page12")}
+          onClick={handleSubmit}
           style={styles.button}
           variant={radioValue !== "No" ? "primary" : "secondary"}
         >
-          {radioValue !== "No" ? "Got it!" : "Submit & Continue"}
+          {radioValue !== "No" ? "Submit & Continue" : "Submit & Continue"}
         </Button>
       </div>
     </>

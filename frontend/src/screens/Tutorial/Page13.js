@@ -10,25 +10,23 @@ import {
 
 import { useHistory } from "react-router-dom";
 
-import CustomNavbar from "../components/CustomNavbar";
-import { useAudioPlayer } from "react-use-audio-player"
+import CustomNavbar from "../../components/CustomNavbar";
 
+import Graph from "../../assets/as3.png";
 
-import Graph from "../assets/as3.png";
-
-export default function Page10({dispatchPageIndex}) {
+export default function Page13({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
-  const [startDate] = useState(new Date());
   const [radioValue, setRadioValue] = useState("No");
+  const [startDate] = useState(new Date());
 
   const radios = [
     { name: "-90%", value: "-90" },
     { name: "-70%", value: "-70" },
-    { name: "-50%", value: "-50" },
+    { name: "-50%", value: "-50 "},
     { name: "-30%", value: "-30" },
-    { name: "-10%", value: "-10" },
-    { name: "?", value: "N/A" },
-    { name: "10%", value: "10" },
+    { name: "-10%", value: "-10 "},
+    { name: "?", value: "-1 "},
+    { name: "10%", value: '10 '},
     { name: "30%", value: "30" },
     { name: "50%", value: "50" },
     { name: "70%", value: "70" },
@@ -45,35 +43,36 @@ export default function Page10({dispatchPageIndex}) {
   }
 
 
+
   return (
     <>
       <CustomNavbar />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={styles.directions}>
-          Question 1: What is bar B in terms of bar A?
+          Question 2: What is bar B in terms of bar A?
         </div>
         <div style={styles.main}>
           <ButtonGroup style={styles.buttonGroupDiv}>
             {radios.map((radio, idx) => (
               <ToggleButton
-                style={{
-                  // backgroundColor: "#f4f4f4",
-                  boxShadow: "2px 2px 1px 1px #d8d8d8",
-                  margin: 5,
-                  color: "black",
-                  fontWeight: "700",
-                  width: 100,
-                  maxWidth: 100,
-                }}
-                key={idx}
-                id={`radio-${idx}`}
-                type="radio"
-                variant={idx % 2 ? "outline-primary" : "outline-primary"}
-                name="radio"
-                value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
-              >
+              style={{
+                // backgroundColor: "#f4f4f4",
+                boxShadow: "2px 2px 1px 1px #d8d8d8",
+                margin: 5,
+                color: "black",
+                fontWeight: "700",
+                width: 100,
+                maxWidth: 100,
+              }}
+              key={idx}
+              id={`radio-${idx}`}
+              type="radio"
+              variant={idx % 2 ? "outline-primary" : "outline-primary"}
+              name="radio"
+              value={radio.value}
+              checked={radioValue === radio.value}
+              onChange={(e) => setRadioValue(e.currentTarget.value)}
+            >
                 {radio.name !== "?" ? (
                   <>
                     <Image style={styles.img} src={Graph} />

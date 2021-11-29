@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
-import CustomNavbar from "../components/CustomNavbar";
+import CustomNavbar from "../../components/CustomNavbar";
 import { useHistory } from "react-router-dom";
-import Graph from "../assets/as3.png";
+import Graph from "../../assets/as3.png";
 
-export default function Page12({dispatchPageIndex}) {
+import {useAudioPlayer} from "react-use-audio-player";
+
+
+
+export default function QuestionSound2({dispatchPageIndex}) {
   const [isBlack, setIsBlack] = useState(false);
   const [navigateAway, setNavigateAway] = useState(false);
-
-  const history = useHistory();
 
   useEffect(() => {
     let timer = setTimeout(
@@ -25,8 +27,23 @@ export default function Page12({dispatchPageIndex}) {
     );
   }, []);
 
+  const { stop, play } = useAudioPlayer({
+    src: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
+    format: "mp3",
+    autoplay: true,
+    onend: () => console.log("sound has ended!")
+});
+
+
+
+
   useEffect(() => {
-    navigateAway === true && history.push("/page13");
+    if(isBlack){
+      stop();
+    }
+    if(navigateAway){
+      dispatchPageIndex({type: 'next'});
+    }
   });
 
   return (
@@ -35,7 +52,7 @@ export default function Page12({dispatchPageIndex}) {
         <>
           <CustomNavbar />
           <div style={styles.directions}>
-            Question 2: What is bar B in terms of bar A?
+            Question 1: What is bar B in terms of bar A?
           </div>
           <div style={styles.main}>
             <Image style={styles.img} src={Graph} />

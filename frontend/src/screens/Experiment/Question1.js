@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
-import CustomNavbar from "../components/CustomNavbar";
+import CustomNavbar from "../../components/CustomNavbar";
 import { useHistory } from "react-router-dom";
-import Graph from "../assets/as3.png";
+import Graph from "../../assets/as3.png";
 
-import {useAudioPlayer} from "react-use-audio-player";
 
-import Page10 from "./Page10";
-import Page11 from "./Page11";
-import Page12 from "./Page12";
-import Page13 from "./Page13";
-import Page14 from "./Page14";
-
-export default function Page9({dispatchPageIndex}) {
+export default function Question1({dispatchPageIndex}) {
   const [isBlack, setIsBlack] = useState(false);
   const [navigateAway, setNavigateAway] = useState(false);
 
@@ -31,18 +24,9 @@ export default function Page9({dispatchPageIndex}) {
     );
   }, []);
 
-  const { stop, play } = useAudioPlayer({
-    src: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
-    format: "mp3",
-    autoplay: true,
-    onend: () => console.log("sound has ended!")
-});
-
 
   useEffect(() => {
-    if(isBlack){
-      stop();
-    }
+    
     if(navigateAway){
       dispatchPageIndex({type: 'next'});
     }

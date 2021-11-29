@@ -7,16 +7,13 @@ import {
   ToggleButton,
   FormControl,
 } from "react-bootstrap";
+import CustomNavbar from "../../components/CustomNavbar";
 
-import { useHistory } from "react-router-dom";
-
-import CustomNavbar from "../components/CustomNavbar";
-
-import Graph from "../assets/as3.png";
-
-export default function Page13({dispatchPageIndex}) {
+import Graph from "../../assets/as3.png";
+import {useHistory} from 'react-router-dom';
+export default function Page14({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState("No");
+  const [radioValue, setRadioValue] = useState(-30);
   const history = useHistory();
 
   const radios = [
@@ -32,7 +29,6 @@ export default function Page13({dispatchPageIndex}) {
     { name: "70%", value: 70 },
     { name: "90%", value: 90 },
   ];
-
   console.log({ radioValue });
   return (
     <>
@@ -61,7 +57,7 @@ export default function Page13({dispatchPageIndex}) {
                 name="radio"
                 value={radio.value}
                 checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
+                // onChange={(e) => setRadioValue(e.currentTarget.value)}
               >
                 {radio.name !== "?" ? (
                   <>
@@ -85,12 +81,13 @@ export default function Page13({dispatchPageIndex}) {
             ))}
           </ButtonGroup>
         </div>
+        <div>{`"-30%" is the answer!`}</div>
         <Button
-          onClick={() => history.push("/page14")}
+          onClick={() => history.push("/begin")}
           style={styles.button}
           variant={radioValue !== "No" ? "primary" : "secondary"}
         >
-          {radioValue !== "No" ? "Submit & Continue" : "Submit & Continue"}
+          {radioValue !== "No" ? "Got it!" : "Submit & Continue"}
         </Button>
       </div>
     </>
