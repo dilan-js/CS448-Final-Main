@@ -1,0 +1,4 @@
+{
+    "plugins": ["jest"],
+"parser": "babel-eslint"}
+
