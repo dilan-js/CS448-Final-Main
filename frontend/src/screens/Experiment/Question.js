@@ -1,36 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
-import { useHistory } from "react-router-dom";
 import Graph from "../../assets/as3.png";
+import {useAudioPlayer} from "react-use-audio-player";
 
 
-export default function Question1({dispatchPageIndex}) {
+export default function Question({setCurrentStep, question, questionIndex }) {
+  const {questionTitle = "", graphURL="", soundURLs = {}} = question || {};
   const [isBlack, setIsBlack] = useState(false);
+  const [soundIndex, setSoundIndex] = useState(1);
+  const [displayQuestion, setDisplayQuestion] = useState(false);
   const [navigateAway, setNavigateAway] = useState(false);
-
-  useEffect(() => {
-    let timer = setTimeout(
-      function () {
-        setIsBlack(true);
-      }.bind(this),
-      5000
-    );
-    let timer2 = setTimeout(
-      function () {
-        setNavigateAway(true);
-      }.bind(this),
-      6000
-    );
-  }, []);
+  const { stop, play, ready } = useAudioPlayer({
+    src: soundURLs[`soundURL${soundIndex}`],
+    format: "wav",
+    autoplay: false,
+    onend: () => setSoundIndex(2)
+});
 
 
   useEffect(() => {
-    
+    let timer;
+    let timer2;
+    if(ready){
+      setDisplayQuestion(true);
+      if(soundURLs.soundURL1){
+          play();
+      }
+      timer = setTimeout(
+        function () {
+          setIsBlack(true);
+        }.bind(this),
+        5000
+      );
+      timer2 = setTimeout(
+        function () {
+          setNavigateAway(true);
+        }.bind(this),
+        6000
+      );
+    }
+    return () => {
+      // clearTimeout(timer);
+      // clearTimeout(timer2);
+    }
+  }, [ready]);
+
+
+  useEffect(() => {
+    if(isBlack){
+      stop();
+    }
     if(navigateAway){
-      dispatchPageIndex({type: 'next'});
+      setCurrentStep("Answer");
+
     }
   });
+
+  if(!displayQuestion){
+    return <div></div>
+  }
 
   return (
     <>
@@ -38,10 +67,10 @@ export default function Question1({dispatchPageIndex}) {
         <>
           <CustomNavbar />
           <div style={styles.directions}>
-            Question 1: What is bar B in terms of bar A?
+            Question {questionIndex+1}: {questionTitle}
           </div>
           <div style={styles.main}>
-            <Image style={styles.img} src={Graph} />
+            <Image style={styles.img} src={graphURL} />
             {/* <Button
           onClick={() => console.log("hey")}
           style={styles.button}

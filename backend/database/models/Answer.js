@@ -10,11 +10,11 @@ const ObjectId = Schema.Types.ObjectId;
 const answerSchema = new Schema(
   {
     user:{
-        type: ObjectID, 
+        type: ObjectId, 
         ref: "User"
     },
     question:{
-        type: ObjectID, 
+        type: ObjectId, 
         ref: "Question"
     },
     answerValue:{

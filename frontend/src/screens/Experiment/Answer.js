@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from "react";
 import {
   Image,
-  InputGroup,
   Button,
   ButtonGroup,
   ToggleButton,
-  FormControl,
 } from "react-bootstrap";
 
-import { useHistory } from "react-router-dom";
-
 import CustomNavbar from "../../components/CustomNavbar";
-import { useAudioPlayer } from "react-use-audio-player"
 
-
+import api from '../../global/api';
 import Graph from "../../assets/as3.png";
+import {useAudioPlayer} from "react-use-audio-player";
 
-export default function AnswerQuestion3({dispatchPageIndex}) {
+export default function Answer({dispatchQuestionIndex, questionIndex, setCurrentStep, question }) {
+  const {questionTitle="", _id ="" } = question || {};
   const [checked, setChecked] = useState(false);
   const [startDate] = useState(new Date());
-  const [radioValue, setRadioValue] = useState("No");
+  const [radioValue, setRadioValue] = useState("");
+
+  useAudioPlayer({
+    src: "",
+    format: "wav",
+});
 
   const radios = [
     { name: "-90%", value: "-90" },
@@ -27,7 +29,8 @@ export default function AnswerQuestion3({dispatchPageIndex}) {
     { name: "-50%", value: "-50" },
     { name: "-30%", value: "-30" },
     { name: "-10%", value: "-10" },
-    { name: "?", value: "N/A" },
+    { name: "0%", value: "0" },
+    { name: "?", value: "-1" },
     { name: "10%", value: "10" },
     { name: "30%", value: "30" },
     { name: "50%", value: "50" },
@@ -39,9 +42,18 @@ export default function AnswerQuestion3({dispatchPageIndex}) {
 
   const handleSubmit = () => {
     const endDate = new Date();
-    const elapsedTime = endDate.getTime() - startDate.getTime();
-    console.log({elapsedTime});
-    dispatchPageIndex({type: 'next'});
+    const answerTimer = endDate.getTime() - startDate.getTime();
+    console.log({answerTimer});
+    const payload = {
+      user: localStorage.getItem("userId"),
+      question: question._id,
+      answerValue: parseInt(radioValue), 
+      answerTimer
+    }
+    api.post("submitAnswer", payload).then((res) => {
+      setCurrentStep("Question");
+      dispatchQuestionIndex({type: 'next'});
+    });
   }
 
 
@@ -50,7 +62,7 @@ export default function AnswerQuestion3({dispatchPageIndex}) {
       <CustomNavbar />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={styles.directions}>
-          Question 1: What is bar B in terms of bar A?
+        Question {questionIndex+1}: {questionTitle}
         </div>
         <div style={styles.main}>
           <ButtonGroup style={styles.buttonGroupDiv}>

@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 const User = require("./database/models/User");
 const Question = require("./database/models/Question");
+const Answer = require("./database/models/Answer");
 // const authMiddleware = require("./middleware/authMiddleware");
 // const gm = require("gm");
 const fs = require("fs");
@@ -82,14 +83,15 @@ app.get("/api/retrieveQuestions/:userId/:groupCode", async (req, res) => {
     var responseArray = [];
     const foundUser = await User.find({_id: userId});
     if(foundUser){
+      const nonSoundQuestions = await Question.find({soundURLs: {$exists: false}});
+      const soundQuestions = await Question.find({soundURLs: {$exists: true}});
       if(groupCode == 'A'){
         //sound bytes last
-        const nonSoundQuestions = await Question.find({soundURL: {$exists: false}});
-        responseArray.push(nonSoundQuestions);
-        const soundQuestions = await Question.find({soundURL: {$exists: true}});
-        responseArray.push(soundQuestions);
-        console.log(responseArray);
-
+        responseArray = [...nonSoundQuestions, ...soundQuestions];
+        console.log("GROUPA");
+      }else{
+        responseArray = [ ...soundQuestions, ...nonSoundQuestions];
+        console.log("GROUP B")
       }
       res.status(200).send({msg: "Success", questionArray: responseArray});
     }
@@ -100,6 +102,18 @@ app.get("/api/retrieveQuestions/:userId/:groupCode", async (req, res) => {
 });
 
 
+app.post("/api/submitAnswer", async (req, res) => {
+  try {
+    
+    const answer = new Answer(req.body);
+    const savedAnswer = await answer.save();
+    res.status(200).send({msg: "Success"});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something failed" });
+  }
+});
 
 
 

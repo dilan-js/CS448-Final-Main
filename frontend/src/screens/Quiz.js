@@ -1,10 +1,9 @@
-import React, {useReducer, useEffect} from 'react'
+import React, {useReducer, useEffect, useState} from 'react'
 
-import Question1 from './Experiment/Question1';
-import QuestionSound2 from './Experiment/QuestionSound2';
-import Answer3 from './Experiment/AnswerQuestion3';
+import Question from './Experiment/Question';
+import Answer from './Experiment/Answer';
 
-const steps = [Question1, QuestionSound2, Answer3];
+const steps = {Question, Answer};
 const reducer = (state, action) => {
     switch(action.type){
         case 'next': 
@@ -17,19 +16,22 @@ const reducer = (state, action) => {
     }
 }
 
-export default function Quiz() {
-    const [pageIndex, dispatchPageIndex] = useReducer(reducer, 0);
-    const Page = steps[pageIndex];
+export default function Quiz({questions}) {
+    const [questionIndex, dispatchQuestionIndex] = useReducer(reducer, 0);
+    const [currentStep, setCurrentStep] = useState("Question");
+    const question = questions[questionIndex];
+    const Page = steps[currentStep];
+
     useEffect(() => {
-        let mostRecentStep = localStorage.getItem("mostRecentStep");
-        if(mostRecentStep){
-            dispatchPageIndex({type: 'return', step: parseInt(mostRecentStep)});
+        let mostRecentQuestion = localStorage.getItem("mostRecentQuestion");
+        if(mostRecentQuestion){
+            dispatchQuestionIndex({type: 'return', step: parseInt(mostRecentQuestion)});
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("mostRecentStep",pageIndex);
-    }, [pageIndex]);
+        localStorage.setItem("mostRecentQuestion",questionIndex);
+    }, [questionIndex]);
 
-    return <Page dispatchPageIndex={dispatchPageIndex}/>
+    return <Page setCurrentStep={setCurrentStep} questionIndex={questionIndex} question={question} dispatchQuestionIndex={dispatchQuestionIndex}/>
 }

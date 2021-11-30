@@ -36,7 +36,9 @@ function App() {
         <Route exact path="/directions1" component={DirectionsOne} />
         <Route exact path="/directions2" component={DirectionsTwo} />
         <Route exact path="/tutorial" component={Tutorial} />
-        <Route exact path="/test" component={Quiz} />
+        <Route exact path="/test" render={(props) => (
+    <Quiz {...props} questions={questions} />
+  )} />
         <Route exact path="/begin" render={(props) => (
     <Begin {...props} setQuestions={setQuestions} />
   )} />

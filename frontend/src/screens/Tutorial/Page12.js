@@ -36,7 +36,10 @@ export default function Page12({dispatchPageIndex}) {
 });
 
   useEffect(() => {
+    play();
+  }, [])
 
+  useEffect(() => {
     if(isBlack){
       stop();
     }
