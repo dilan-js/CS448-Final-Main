@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
 import Graph from "../../assets/as3.png";
 import {useAudioPlayer} from "react-use-audio-player";
+import { v4 as uuidv4 } from 'uuid';
 
-
+import music from './instrumental_lauryn.mp3';
 export default function Question({setCurrentStep, question, questionIndex }) {
   const {questionTitle = "", graphURL="", soundURLs = {}} = question || {};
   const [isBlack, setIsBlack] = useState(false);
   const [soundIndex, setSoundIndex] = useState(1);
   const [displayQuestion, setDisplayQuestion] = useState(false);
   const [navigateAway, setNavigateAway] = useState(false);
-  const { stop, play, ready } = useAudioPlayer({
-    src: soundURLs[`soundURL${soundIndex}`],
+  const soundURL = useMemo(() => soundURLs[`soundURL${soundIndex}`] ? soundURLs[`soundURL${soundIndex}`] + '?' + uuidv4() : "", [soundIndex]);
+  console.log({soundURL});
+  const { stop, play, ready} = useAudioPlayer({
+    src: soundURL,
     format: "wav",
-    autoplay: false,
+    autoplay: true,
     onend: () => setSoundIndex(2)
 });
 
@@ -24,9 +27,6 @@ export default function Question({setCurrentStep, question, questionIndex }) {
     let timer2;
     if(ready){
       setDisplayQuestion(true);
-      if(soundURLs.soundURL1){
-          play();
-      }
       timer = setTimeout(
         function () {
           setIsBlack(true);

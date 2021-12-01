@@ -11,37 +11,51 @@ export default function Page12({dispatchPageIndex}) {
   const [navigateAway, setNavigateAway] = useState(false);
 
   const history = useHistory();
-
-  useEffect(() => {
-    let timer = setTimeout(
-      function () {
-        setIsBlack(true);
-      }.bind(this),
-      5000
-    );
-    let timer2 = setTimeout(
-      function () {
-        setNavigateAway(true);
-      }.bind(this),
-      6000
-    );
-  }, []);
-
-
-  const { stop, play } = useAudioPlayer({
-    src: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
-    format: "mp3",
+  const { stop, play , ready, player} = useAudioPlayer({
+    src: "https://cs448-final.s3.us-west-2.amazonaws.com/high1.wav?2974502847397497",
+    format: "wav",
     autoplay: true,
     onend: () => console.log("sound has ended!")
 });
 
+
+
+
   useEffect(() => {
-    play();
-  }, [])
+    let timer;
+    let timer2;
+    console.log({player});
+    console.log({ready});
+    if(ready){
+      console.log("Playing guitar sound");
+      timer = setTimeout(
+        function () {
+          setIsBlack(true);
+        }.bind(this),
+        5000
+      );
+      timer2 = setTimeout(
+        function () {
+          setNavigateAway(true);
+        }.bind(this),
+        6000
+      );
+    }
+  }, []);
+
+
+ 
+
+  // useEffect(() => {
+  //   if(ready){
+   
+  //   }
+  // }, [ready])
 
   useEffect(() => {
     if(isBlack){
       stop();
+      console.log("sound with guitar riff stopped");
     }
     if(navigateAway){
       dispatchPageIndex({type: 'next'});

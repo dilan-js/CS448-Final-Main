@@ -26,8 +26,8 @@ export default function Page9({dispatchPageIndex}) {
   }, []);
 
   const { stop, play } = useAudioPlayer({
-    src: "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3",
-    format: "mp3",
+    src: "https://cs448-final.s3.us-west-2.amazonaws.com/low3.wav",
+    format: "wav",
     autoplay: true,
     onend: () => console.log("sound has ended!")
 });
