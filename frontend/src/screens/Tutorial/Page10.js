@@ -16,24 +16,25 @@ import { useAudioPlayer } from "react-use-audio-player"
 
 import Graph from "../../assets/as3.png";
 
+import radios from '../../global/radios';
 export default function Page10({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
   const [startDate] = useState(new Date());
   const [radioValue, setRadioValue] = useState("No");
 
-  const radios = [
-    { name: "-90%", value: "-90" },
-    { name: "-70%", value: "-70" },
-    { name: "-50%", value: "-50" },
-    { name: "-30%", value: "-30" },
-    { name: "-10%", value: "-10" },
-    { name: "?", value: "N/A" },
-    { name: "10%", value: "10" },
-    { name: "30%", value: "30" },
-    { name: "50%", value: "50" },
-    { name: "70%", value: "70" },
-    { name: "90%", value: "90" },
-  ];
+  // const radios = [
+  //   { name: "-90%", value: "-90" , image: ''},
+  //   { name: "-70%", value: "-70", image: '' },
+  //   { name: "-50%", value: "-50" , image: ''},
+  //   { name: "-30%", value: "-30" , image: ''},
+  //   { name: "-10%", value: "-10" , image: ''},
+  //   { name: "?", value: "N/A", image: '' },
+  //   { name: "10%", value: "10", image: '' },
+  //   { name: "30%", value: "30", image: '' },
+  //   { name: "50%", value: "50" , image: ''},
+  //   { name: "70%", value: "70", image: '' },
+  //   { name: "90%", value: "90", image: '' },
+  // ];
 
   console.log({ radioValue });
 
@@ -76,7 +77,7 @@ export default function Page10({dispatchPageIndex}) {
               >
                 {radio.name !== "?" ? (
                   <>
-                    <Image style={styles.img} src={Graph} />
+                    <Image style={styles.img} src={radio?.image} />
                     <div>{radio.name}</div>
                   </>
                 ) : (

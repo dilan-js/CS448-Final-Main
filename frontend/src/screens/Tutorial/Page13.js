@@ -14,24 +14,14 @@ import CustomNavbar from "../../components/CustomNavbar";
 
 import Graph from "../../assets/as3.png";
 
+import radios from '../../global/radios';
+
 export default function Page13({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState("No");
   const [startDate] = useState(new Date());
 
-  const radios = [
-    { name: "-90%", value: "-90" },
-    { name: "-70%", value: "-70" },
-    { name: "-50%", value: "-50 "},
-    { name: "-30%", value: "-30" },
-    { name: "-10%", value: "-10 "},
-    { name: "?", value: "-1 "},
-    { name: "10%", value: '10 '},
-    { name: "30%", value: "30" },
-    { name: "50%", value: "50" },
-    { name: "70%", value: "70" },
-    { name: "90%", value: "90" },
-  ];
+ 
 
   console.log({ radioValue });
 
@@ -75,7 +65,7 @@ export default function Page13({dispatchPageIndex}) {
             >
                 {radio.name !== "?" ? (
                   <>
-                    <Image style={styles.img} src={Graph} />
+                    <Image style={styles.img} src={radio?.image} />
                     <div>{radio.name}</div>
                   </>
                 ) : (
