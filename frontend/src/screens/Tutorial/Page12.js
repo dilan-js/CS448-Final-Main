@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
 import { useHistory } from "react-router-dom";
-import Graph from "../../assets/as3.png";
+import Graph from "../../assets/dns2.png";
 
 import {useAudioPlayer} from "react-use-audio-player";
 
@@ -11,12 +11,12 @@ export default function Page12({dispatchPageIndex}) {
   const [navigateAway, setNavigateAway] = useState(false);
 
   const history = useHistory();
-  const { stop, play , ready, player} = useAudioPlayer({
-    src: "https://cs448-final.s3.us-west-2.amazonaws.com/high1.wav?2974502847397497",
-    format: "wav",
-    autoplay: true,
-    onend: () => console.log("sound has ended!")
-});
+//   const { stop, play , ready, player} = useAudioPlayer({
+//     src: "https://cs448-final.s3.us-west-2.amazonaws.com/high1.wav?2974502847397497",
+//     format: "wav",
+//     autoplay: true,
+//     onend: () => console.log("sound has ended!")
+// });
 
 
 
@@ -24,9 +24,9 @@ export default function Page12({dispatchPageIndex}) {
   useEffect(() => {
     let timer;
     let timer2;
-    console.log({player});
-    console.log({ready});
-    if(ready){
+    // console.log({player});
+    // console.log({ready});
+    // if(ready){
       console.log("Playing guitar sound");
       timer = setTimeout(
         function () {
@@ -40,7 +40,7 @@ export default function Page12({dispatchPageIndex}) {
         }.bind(this),
         6000
       );
-    }
+    //}
   }, []);
 
 

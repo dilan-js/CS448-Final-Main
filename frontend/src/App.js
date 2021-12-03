@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import React, {useState} from 'react';
 import Landing from "./screens/Landing";
+import Ending from "./screens/Ending";
 import SignUp from "./screens/SignUp";
 import VisualImpairment from "./screens/VisualImpairment";
 import VisualExplanation from "./screens/VisualExplanation";
@@ -28,6 +29,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Route exact path="/" component={Landing} />
+        <Route exact path="/the-end" component={Ending} />
         <Route exact path="/register" component={SignUp} />
         <Route exact path="/visual" component={VisualImpairment} />
         <Route exact path="/visualex" component={VisualExplanation} />

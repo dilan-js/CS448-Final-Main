@@ -12,12 +12,14 @@ import api from '../../global/api';
 import Graph from "../../assets/as3.png";
 import radios from '../../global/radios';
 import {useAudioPlayer} from "react-use-audio-player";
+import {useHistory} from 'react-router-dom';
 
 export default function Answer({dispatchQuestionIndex, questionIndex, setCurrentStep, question }) {
   const {questionTitle="", _id ="" } = question || {};
   const [checked, setChecked] = useState(false);
   const [startDate] = useState(new Date());
   const [radioValue, setRadioValue] = useState("");
+  const history = useHistory();
 
   useAudioPlayer({
     src: "",
@@ -39,8 +41,13 @@ export default function Answer({dispatchQuestionIndex, questionIndex, setCurrent
       answerTimer
     }
     api.post("submitAnswer", payload).then((res) => {
+    //  alert(questionIndex);
       setCurrentStep("Question");
-      dispatchQuestionIndex({type: 'next'});
+      if(questionIndex < 27){
+        dispatchQuestionIndex({type: 'next'});
+      }else{
+        history.push("/");
+      }
     });
   }
 

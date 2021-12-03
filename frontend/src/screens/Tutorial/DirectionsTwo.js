@@ -13,11 +13,17 @@ export default function DirectionsTwo() {
       <div style={styles.directions}>Directions</div>
       <div style={styles.main1}>
         <div style={styles.subDirections}>
+          • One exercise will include a sound cue. The other exercise will not. 
+        </div>
+        <div style={styles.subDirections}>
           • You will have 5 seconds to analyze the following graph.
         </div>
         <div style={styles.subDirections}>
           • Your objective is to determine, in percentage, the different between
           the bars of the graph.
+        </div>
+        <div style={styles.subDirections}>
+          • Please turn your volume on your computer up, and please do not go back in your browser. 
         </div>
       </div>
       <div style={styles.main}>

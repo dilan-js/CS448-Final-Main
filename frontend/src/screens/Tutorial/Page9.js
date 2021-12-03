@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
-import Graph from "../../assets/as3.png";
+import Graph from "../../assets/ds0.png";
 
 import {useAudioPlayer} from "react-use-audio-player";
 
@@ -26,7 +26,7 @@ export default function Page9({dispatchPageIndex}) {
   }, []);
 
   const { stop, play } = useAudioPlayer({
-    src: "https://cs448-final.s3.us-west-2.amazonaws.com/low3.wav",
+    src: "https://cs448-final.s3.us-west-2.amazonaws.com/q10.wav",
     format: "wav",
     autoplay: true,
     onend: () => console.log("sound has ended!")

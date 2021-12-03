@@ -14,17 +14,17 @@ export default function Page1() {
   return (
     <>
       <div style={styles.main}>
-        <div style={styles.title}>Welcome to Animys</div>
+        <div style={styles.title}>Thank You!</div>
       </div>
       <Button
-        onClick={() => history.push("/register")}
+        onClick={() => history.push('/')}
         style={styles.button}
         variant="primary"
       >
-        Enter
+        Exit
       </Button>
       <div style={styles.footer}>
-        <div style={styles.footer1}>By Dana Chiueh & Dilan Nana</div>
+        <div style={styles.footer1}>By Dana Cheuh & Dilan Nana</div>
         <div style={styles.footer2}>Made with ❤ at Stanford University</div>
       </div>
     </>
@@ -37,6 +37,8 @@ const styles = {
     justifyContent: "center",
     alignContent: "center",
     paddingTop: 200,
+    flexDirection: 'column',
+    textAlign: 'center'
   },
   title: {
     fontSize: 45,
@@ -56,4 +58,9 @@ const styles = {
     bottom: 10,
     width: "100%",
   },
+  subtitle:{
+      fontSize: 25, 
+      fontWeight: 500, 
+      width: '60%'
+  }
 };
