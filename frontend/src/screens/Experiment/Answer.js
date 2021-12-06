@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-  Image,
   Button,
-  ButtonGroup,
-  ToggleButton,
+  FloatingLabel,
+  Form
 } from "react-bootstrap";
-
 import CustomNavbar from "../../components/CustomNavbar";
 
 import api from '../../global/api';
@@ -19,6 +17,8 @@ export default function Answer({dispatchQuestionIndex, questionIndex, setCurrent
   const [checked, setChecked] = useState(false);
   const [startDate] = useState(new Date());
   const [radioValue, setRadioValue] = useState("");
+    const [textValue, setTextValue] = useState("");
+
   const history = useHistory();
 
   useAudioPlayer({
@@ -27,8 +27,12 @@ export default function Answer({dispatchQuestionIndex, questionIndex, setCurrent
 });
 
  
+const handleOnChange = (e) => {
+  setTextValue(e.target.value);
+  console.log({textValue});
+}
 
-  console.log({ radioValue });
+
 
   const handleSubmit = () => {
     const endDate = new Date();
@@ -37,7 +41,7 @@ export default function Answer({dispatchQuestionIndex, questionIndex, setCurrent
     const payload = {
       user: localStorage.getItem("userId"),
       question: question._id,
-      answerValue: parseInt(radioValue), 
+      answerValue: textValue.trim(), 
       answerTimer
     }
     api.post("submitAnswer", payload).then((res) => {
@@ -60,56 +64,28 @@ export default function Answer({dispatchQuestionIndex, questionIndex, setCurrent
         Question {questionIndex+1}: {questionTitle}
         </div>
         <div style={styles.main}>
-          <ButtonGroup style={styles.buttonGroupDiv}>
-            {radios.map((radio, idx) => (
-              <ToggleButton
-                style={{
-                  // backgroundColor: "#f4f4f4",
-                  boxShadow: "2px 2px 1px 1px #d8d8d8",
-                  margin: 5,
-                  color: "black",
-                  fontWeight: "700",
-                  width: 100,
-                  maxWidth: 100,
-                }}
-                key={idx}
-                id={`radio-${idx}`}
-                type="radio"
-                variant={idx % 2 ? "outline-primary" : "outline-primary"}
-                name="radio"
-                value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
-              >
-                {radio.name !== "?" ? (
-                  <>
-                    <Image style={styles.img} src={radio?.image} />
-                    <div>{radio.name}</div>
-                  </>
-                ) : (
-                  <div
-                    style={{
-                      height: "100%",
-                      fontSize: 24,
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {radio.name}
-                  </div>
-                )}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
+        <Form onSubmit={handleSubmit}>
+          <div style={styles.form}>
+
+        <FloatingLabel controlId="floatingTextarea2" label="Enter your answer">
+        <Form.Control
+          as="textarea"
+          onChange={handleOnChange}
+          placeholder="Enter your answer"
+          style={{ height: 100, width: 200, resize: 'none' , fontSize: 20}}
+        />
+        </FloatingLabel>
         </div>
-        <Button
+         <Button
           onClick={handleSubmit}
           style={styles.button}
-          variant={radioValue !== "No" ? "primary" : "secondary"}
+          variant={textValue !== "" ? "primary" : "secondary"}
         >
-          {radioValue !== "No" ? "Submit & Continue" : "Submit & Continue"}
+          {textValue !== "" ? "Submit & Continue" : "Submit & Continue"}
         </Button>
+        </Form>
+        </div>
+        
       </div>
     </>
   );
@@ -129,18 +105,22 @@ const styles = {
     justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
+    width: '100%'
   },
   main1: {
     display: "flex",
     flexDirection: "column",
+  },
+  form:{
+    marginLeft: 30
   },
   formDiv: {
     flexDirection: "column",
     width: "100%",
   },
   button: {
-    marginLeft: "40%",
-    marginRight: "40%",
+    paddingLeft: 50,
+    paddingRight: 50,
     paddingTop: 8,
     paddingBottom: 8,
     fontWeight: 500,

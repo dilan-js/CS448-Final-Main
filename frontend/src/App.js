@@ -42,7 +42,7 @@ function App() {
     <Quiz {...props} questions={questions} />
   )} />
         <Route exact path="/begin" render={(props) => (
-    <Begin {...props} setQuestions={setQuestions} />
+    <Begin {...props} questions={questions} setQuestions={setQuestions} />
   )} />
        
       </div>

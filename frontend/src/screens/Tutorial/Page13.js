@@ -40,11 +40,11 @@ export default function Page13({dispatchPageIndex}) {
         <Form onSubmit={handleSubmit}>
           <div style={styles.form}>
 
-        <FloatingLabel controlId="floatingTextarea2" label="Enter explanation here">
+        <FloatingLabel controlId="floatingTextarea2" label="Enter your answer here">
         <Form.Control
           as="textarea"
           onChange={handleOnChange}
-          placeholder="Enter explanation here"
+          placeholder="Enter your answer here"
           style={{ height: 100, width: 200, resize: 'none' , fontSize: 20}}
         />
         </FloatingLabel>
