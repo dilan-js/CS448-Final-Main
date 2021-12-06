@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  Image,
-  InputGroup,
   Button,
-  ButtonGroup,
-  ToggleButton,
-  FormControl,
+  Image
 } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
-
-import { useHistory } from "react-router-dom";
-
-import Graph from "../../assets/as3.png";
-import radios from '../../global/radios';
+import AnswerExample from './AnswerExample';
+import Graph from "../../assets/ds0.png";
 
 export default function Page11({dispatchPageIndex}) {
   const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState("-30");
-
-
-
-  console.log({ radioValue });
 
   const handleSubmit = () => {
     dispatchPageIndex({type: 'next'});
@@ -34,56 +22,15 @@ export default function Page11({dispatchPageIndex}) {
           Question 1: What is bar B in terms of bar A?
         </div>
         <div style={styles.main}>
-          <ButtonGroup style={styles.buttonGroupDiv}>
-            {radios.map((radio, idx) => (
-              <ToggleButton
-                style={{
-                  // backgroundColor: "#f4f4f4",
-                  boxShadow: "2px 2px 1px 1px #d8d8d8",
-                  margin: 5,
-                  color: "black",
-                  fontWeight: "700",
-                  width: 100,
-                  maxWidth: 100,
-                }}
-                key={idx}
-                id={`radio-${idx}`}
-                type="radio"
-                variant={idx % 2 ? "outline-primary" : "outline-primary"}
-                name="radio"
-                value={radio.value}
-                checked={radioValue === radio.value}
-                // onChange={(e) => setRadioValue(e.currentTarget.value)}
-              >
-                {radio.name !== "?" ? (
-                  <>
-                    <Image style={styles.img} src={radio?.image} />
-                    <div>{radio.name}</div>
-                  </>
-                ) : (
-                  <div
-                    style={{
-                      height: "100%",
-                      fontSize: 24,
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {radio.name}
-                  </div>
-                )}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
+        <Image style={styles.img} src={Graph} />
+        <AnswerExample answer="2x"/>
         </div>
-        <div>{`"-30%" is the answer!`}</div>
         <Button
           onClick={handleSubmit}
           style={styles.button}
-          variant={radioValue !== "No" ? "primary" : "secondary"}
+          variant="primary" 
         >
-          {radioValue !== "No" ? "Got it!" : "Submit & Continue"}
+          Got It!
         </Button>
       </div>
     </>
@@ -102,7 +49,8 @@ const styles = {
     paddingRight: "5%",
     display: "flex",
     justifyContent: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: "column",
     flexWrap: "wrap",
   },
   main1: {
@@ -132,8 +80,9 @@ const styles = {
     paddingTop: 10,
   },
   img: {
-    width: 70,
-    height: 70,
+    zIndex: 50,
+    width: 300,
+    height: 300,
   },
   answerButton: {
     height: 100,

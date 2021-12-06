@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
 import {
-  Image,
-  InputGroup,
   Button,
-  ButtonGroup,
-  ToggleButton,
-  FormControl,
+  FloatingLabel,
+  Form
 } from "react-bootstrap";
 
-import { useHistory } from "react-router-dom";
 
 import CustomNavbar from "../../components/CustomNavbar";
 
-import Graph from "../../assets/as3.png";
 
-import radios from '../../global/radios';
 
 export default function Page13({dispatchPageIndex}) {
-  const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState("No");
+  const [textValue, setTextValue] = useState("");
   const [startDate] = useState(new Date());
 
  
-
-  console.log({ radioValue });
 
   const handleSubmit = () => {
     const endDate = new Date();
@@ -32,6 +23,10 @@ export default function Page13({dispatchPageIndex}) {
     dispatchPageIndex({type: 'next'});
   }
 
+  const handleOnChange = (e) => {
+    setTextValue(e.target.value);
+    console.log({textValue});
+  }
 
 
   return (
@@ -42,56 +37,27 @@ export default function Page13({dispatchPageIndex}) {
           Question 2: What is bar B in terms of bar A?
         </div>
         <div style={styles.main}>
-          <ButtonGroup style={styles.buttonGroupDiv}>
-            {radios.map((radio, idx) => (
-              <ToggleButton
-              style={{
-                // backgroundColor: "#f4f4f4",
-                boxShadow: "2px 2px 1px 1px #d8d8d8",
-                margin: 5,
-                color: "black",
-                fontWeight: "700",
-                width: 100,
-                maxWidth: 100,
-              }}
-              key={idx}
-              id={`radio-${idx}`}
-              type="radio"
-              variant={idx % 2 ? "outline-primary" : "outline-primary"}
-              name="radio"
-              value={radio.value}
-              checked={radioValue === radio.value}
-              onChange={(e) => setRadioValue(e.currentTarget.value)}
-            >
-                {radio.name !== "?" ? (
-                  <>
-                    <Image style={styles.img} src={radio?.image} />
-                    <div>{radio.name}</div>
-                  </>
-                ) : (
-                  <div
-                    style={{
-                      height: "100%",
-                      fontSize: 24,
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {radio.name}
-                  </div>
-                )}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
+        <Form onSubmit={handleSubmit}>
+          <div style={styles.form}>
+
+        <FloatingLabel controlId="floatingTextarea2" label="Enter explanation here">
+        <Form.Control
+          as="textarea"
+          onChange={handleOnChange}
+          placeholder="Enter explanation here"
+          style={{ height: 100, width: 200, resize: 'none' , fontSize: 20}}
+        />
+        </FloatingLabel>
         </div>
-        <Button
-          onClick={handleSubmit}
+         <Button
+          type="submit"
           style={styles.button}
-          variant={radioValue !== "No" ? "primary" : "secondary"}
+          variant={textValue !== "" ? "primary" : "secondary"}
         >
-          {radioValue !== "No" ? "Submit & Continue" : "Submit & Continue"}
+          {textValue !== "" ? "Submit & Continue" : "Submit & Continue"}
         </Button>
+        </Form>
+        </div>
       </div>
     </>
   );
@@ -111,18 +77,22 @@ const styles = {
     justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
+    width: '100%'
   },
   main1: {
     display: "flex",
     flexDirection: "column",
+  },
+  form:{
+    marginLeft: 30
   },
   formDiv: {
     flexDirection: "column",
     width: "100%",
   },
   button: {
-    marginLeft: "40%",
-    marginRight: "40%",
+    paddingLeft: 50,
+    paddingRight: 50,
     paddingTop: 8,
     paddingBottom: 8,
     fontWeight: 500,

@@ -15,7 +15,7 @@ export default function Question({setCurrentStep, question, questionIndex }) {
   const soundURL = useMemo(() => soundURLs[`soundURL${soundIndex}`] ? soundURLs[`soundURL${soundIndex}`] + '?' + uuidv4() : "", [soundIndex]);
   console.log({soundURL});
   const { stop, play, ready} = useAudioPlayer({
-    src: soundURL,
+    src: questionIndex +1 === 15 ? "" : soundURL,
     format: "wav",
     autoplay: true,
     onend: () => setSoundIndex(2)
