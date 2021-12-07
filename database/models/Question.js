@@ -17,13 +17,9 @@ const questionSchema = new Schema(
       type: String, 
       required: true
     },
-    soundURLs:{
-      soundURL1:{
-        type:String,
-      },
-      soundURL2:{
-        type:String
-      }
+    soundURL:{
+      type:String,
+      trim: true
     },
     questionSortOrder:{
       type: Number, 

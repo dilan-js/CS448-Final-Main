@@ -101,6 +101,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
+    alignItems: 'center'
   },
   main1: {
     display: "flex",

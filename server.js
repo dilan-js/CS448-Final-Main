@@ -83,8 +83,8 @@ app.get("/api/retrieveQuestions/:userId/:groupCode", async (req, res) => {
     var responseArray = [];
     const foundUser = await User.find({_id: userId});
     if(foundUser){
-      const nonSoundQuestions = await Question.find({soundURLs: {$exists: false}});
-      const soundQuestions = await Question.find({soundURLs: {$exists: true}});
+      const nonSoundQuestions = await Question.find({soundURL: {$exists: false}});
+      const soundQuestions = await Question.find({soundURL: {$exists: true}});
       if(groupCode == 'A'){
         //sound bytes last
         responseArray = [...nonSoundQuestions, ...soundQuestions];

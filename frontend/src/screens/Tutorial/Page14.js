@@ -3,12 +3,14 @@ import {
   Image,
   Button,
 } from "react-bootstrap";
+import {useHistory} from 'react-router-dom';
 import CustomNavbar from "../../components/CustomNavbar";
 
 import Graph from "../../assets/dns2.png";
 import AnswerExample from './AnswerExample';
 
 export default function Page14({dispatchPageIndex}) {
+  const history = useHistory();
   
   const handleSubmit = () => {
     dispatchPageIndex({type: 'next'});
@@ -26,7 +28,7 @@ export default function Page14({dispatchPageIndex}) {
         <AnswerExample answer="1.78x"/>
         </div>
         <Button
-          onClick={handleSubmit}
+          onClick={() => history.push("/begin")}
           style={styles.button}
           variant="primary" 
         >

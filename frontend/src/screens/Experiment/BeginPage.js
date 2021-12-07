@@ -4,7 +4,7 @@ import CustomNavbar from "../../components/CustomNavbar";
 
 import { useHistory } from "react-router-dom";
 import api from '../../global/api';
-export default function BeginPage({setQuestions}) {
+export default function BeginPage({setQuestions, questions}) {
   const [checked, setChecked] = useState(false);
   const [successfulRetrieval, setSuccessfulRetrieval] = useState(false);
   const history = useHistory();

@@ -18,7 +18,7 @@ const answerSchema = new Schema(
         ref: "Question"
     },
     answerValue:{
-        type: Number,
+        type: String,
         required: true
     },
     answerTimer:{
