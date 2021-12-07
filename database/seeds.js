@@ -21,16 +21,16 @@ require("dotenv").config();
           //high1
           //0
           //NOT SAVED YET
-          // const question1 = new Question({
-          //     questionTitle: "What is bar B in terms of bar A?",
-          //     graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/ans5.png",
-          //     questionSortOrder: 1, 
-          //     correctAnswer: 0,
-         // soundURL: 'https://cs448-final.s3.us-west-2.amazonaws.com/q1.wav'
+          const question1 = new Question({
+              questionTitle: "What is bar B in terms of bar A?",
+              graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/es1.png",
+              questionSortOrder: 1, 
+              correctAnswer: 0,
+         soundURL: 'https://cs448-final.s3.us-west-2.amazonaws.com/q1.wav'
 
-          // });
-          // await question1.save();
-          // console.log("Question1 was saved!");
+          });
+          await question1.save();
+          console.log("Question1 was saved!");
 
           
           //as2
@@ -97,16 +97,16 @@ require("dotenv").config();
           //es0
           //0
           //q6
-          // const question2 = new Question({
-          //     questionTitle: "What is bar B in terms of bar A?",
-          //     graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/ans5.png",
-          //     questionSortOrder: 6, 
-          //     correctAnswer: 0,
-          //soundURL: 'https://cs448-final.s3.us-west-2.amazonaws.com/q6.wav'
+          const question6 = new Question({
+              questionTitle: "What is bar B in terms of bar A?",
+              graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/es0.png",
+              questionSortOrder: 6, 
+              correctAnswer: 0,
+          soundURL: 'https://cs448-final.s3.us-west-2.amazonaws.com/q6.wav'
 
-          // });
-          // await question6.save();
-          // console.log("Question6 was saved!");
+          });
+          await question6.save();
+          console.log("Question6 was saved!");
 
       
          

@@ -7,18 +7,17 @@ import { v4 as uuidv4 } from 'uuid';
 
 import music from './instrumental_lauryn.mp3';
 export default function Question({setCurrentStep, question, questionIndex }) {
-  const {questionTitle = "", graphURL="", soundURLs = {}} = question || {};
+  const {questionTitle = "", graphURL="", soundURL = ""} = question || {};
   const [isBlack, setIsBlack] = useState(false);
-  const [soundIndex, setSoundIndex] = useState(1);
   const [displayQuestion, setDisplayQuestion] = useState(false);
   const [navigateAway, setNavigateAway] = useState(false);
-  const soundURL = useMemo(() => soundURLs[`soundURL${soundIndex}`] ? soundURLs[`soundURL${soundIndex}`] + '?' + uuidv4() : "", [soundIndex]);
-  console.log({soundURL});
+//  const soundURL = useMemo(() => soundURLs[`soundURL${soundIndex}`] ? soundURLs[`soundURL${soundIndex}`] + '?' + uuidv4() : "", [soundIndex]);
+ // console.log({soundURL});
   const { stop, play, ready} = useAudioPlayer({
-    src: questionIndex +1 === 15 ? "" : soundURL,
+    src: soundURL,
     format: "wav",
-    autoplay: true,
-    onend: () => setSoundIndex(2)
+    autoplay: Boolean(soundURL),
+    onend: () => console.log("soundURL: ", soundURL)
 });
 
 

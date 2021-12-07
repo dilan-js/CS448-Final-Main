@@ -114,17 +114,17 @@ require("dotenv").config();
       
       
          
-        //   //ens1
-        //   //0
-        //   //q8
-        //   const question22 = new Question({
-        //       questionTitle: "What is bar B in terms of bar A?",
-        //       graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/0ens1.png",
-        //       questionSortOrder: 22, 
-        //       correctAnswer: 0,
-        //   });
-        //   await question22.save();
-        //   console.log("question22 was saved!");
+          //ens1
+          //0
+          //q8
+          const question22 = new Question({
+              questionTitle: "What is bar B in terms of bar A?",
+              graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/ens1.png",
+              questionSortOrder: 22, 
+              correctAnswer: 0,
+          });
+          await question22.save();
+          console.log("question22 was saved!");
 
       
           //dns1
@@ -173,14 +173,14 @@ require("dotenv").config();
           //ens0
           //0
           //q12
-        //   const question26 = new Question({
-        //       questionTitle: "What is bar B in terms of bar A?",
-        //       graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/0ens0.png",
-        //       questionSortOrder: 26, 
-        //       correctAnswer: 0,
-        //   });
-        //   await question26.save();
-        //   console.log("question26 was saved!");
+          const question26 = new Question({
+              questionTitle: "What is bar B in terms of bar A?",
+              graphURL: "https://cs448-final.s3.us-west-2.amazonaws.com/ens0.png",
+              questionSortOrder: 26, 
+              correctAnswer: 0,
+          });
+          await question26.save();
+          console.log("question26 was saved!");
 
       
       
