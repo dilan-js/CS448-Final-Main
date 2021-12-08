@@ -66,7 +66,7 @@ export default function Question({setCurrentStep, question, questionIndex }) {
         <>
           <CustomNavbar />
           <div style={styles.directions}>
-            Question {questionIndex+1}: {questionTitle}
+            Question {questionIndex+1}: How many times taller is the taller bar compared to the shorter one?
           </div>
           <div style={styles.main}>
             <Image style={styles.img} src={graphURL} />

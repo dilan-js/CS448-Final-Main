@@ -68,7 +68,7 @@ export default function Page12({dispatchPageIndex}) {
         <>
           <CustomNavbar />
           <div style={styles.directions}>
-            Question 2: What is bar B in terms of bar A?
+          Question 2: How many times taller is the taller bar compared to the shorter one?
           </div>
           <div style={styles.main}>
             <Image style={styles.img} src={Graph} />

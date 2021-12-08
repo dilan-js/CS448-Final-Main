@@ -21,9 +21,9 @@ export default function Page14({dispatchPageIndex}) {
       <CustomNavbar />
       <div style={{ display: "flex", flexDirection: "column" }}>
       <div style={styles.directions}>
-          Question 1: How much taller is the taller bar than the shorter bar? 
+          Question 2: How many times taller is the taller bar compared to the shorter one?
         </div>
-        <div>Please enter an <span style={{fontWeight: '700'}}>integer</span> answer to the nearest tenth decimal place.</div>
+        <div>Please enter an <span style={{fontWeight: '700'}}>numerical</span> answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Image style={styles.img} src={Graph} />
         <AnswerExample answer="4.8x"/>
