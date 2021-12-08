@@ -34,7 +34,7 @@ export default function Page10({dispatchPageIndex}) {
         <div style={styles.directions}>
           Question 1: How much taller is the taller bar than the shorter bar? 
         </div>
-        <div>Please enter an answer to the nearest tenth decimal place.</div>
+        <div>Please enter an <span style={{fontWeight: '700'}}>integer</span> answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Form onSubmit={handleSubmit}>
           <div style={styles.form}>

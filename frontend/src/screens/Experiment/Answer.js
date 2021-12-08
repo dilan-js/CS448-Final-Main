@@ -48,9 +48,10 @@ const handleOnChange = (e) => {
     //  alert(questionIndex);
       setCurrentStep("Question");
       if(questionIndex < 27){
+        alert("QUESTION INDEX 27")
         dispatchQuestionIndex({type: 'next'});
       }else{
-        history.push("/");
+        history.push("/the-end");
       }
     });
   }
@@ -63,7 +64,7 @@ const handleOnChange = (e) => {
         <div style={styles.directions}>
         Question {questionIndex+1}: {questionTitle}
         </div>
-        <div>Please enter an answer to the nearest tenth decimal place.</div>
+        <div>Please enter an <span style={{fontWeight: '700'}}>integer</span> answer to the nearest tenth decimal place.</div>
 
         <div style={styles.main}>
         <Form onSubmit={handleSubmit}>

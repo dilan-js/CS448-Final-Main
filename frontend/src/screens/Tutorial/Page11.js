@@ -21,7 +21,7 @@ export default function Page11({dispatchPageIndex}) {
       <div style={styles.directions}>
           Question 1: How much taller is the taller bar than the shorter bar? 
           </div>
-          <div>Please enter an answer to the nearest tenth decimal place.</div>
+          <div>Please enter an <span style={{fontWeight: '700'}}>integer</span> answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Image style={styles.img} src={Graph} />
         <AnswerExample answer="2x"/>
