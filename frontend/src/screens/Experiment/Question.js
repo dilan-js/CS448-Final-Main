@@ -68,6 +68,7 @@ export default function Question({setCurrentStep, question, questionIndex }) {
           <div style={styles.directions}>
             Question {questionIndex+1}: How many times taller is the taller bar compared to the shorter one?
           </div>
+         
           <div style={styles.main}>
             <Image style={styles.img} src={graphURL} />
             {/* <Button

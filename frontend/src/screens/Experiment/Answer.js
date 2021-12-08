@@ -65,7 +65,6 @@ const handleOnChange = (e) => {
         Question {questionIndex+1}: How many times taller is the taller bar compared to the shorter one?
         </div>
         <div>Please enter an <span style={{fontWeight: '700'}}>numerical</span> answer to the nearest tenth decimal place.</div>
-
         <div style={styles.main}>
         <Form onSubmit={handleSubmit}>
           <div style={styles.form}>

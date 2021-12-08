@@ -19,8 +19,12 @@ export default function DirectionsTwo() {
           • You will have 5 seconds to analyze the following graph.
         </div>
         <div style={styles.subDirections}>
-          • Your objective is to determine, in percentage, the different between
+          • Your objective is to determine the difference between
           the bars of the graph.
+        </div>
+        <div style={styles.subDirections}>
+          • We will ask for a numerical answer; if you believe the bars are equal in height, please put 
+         <span style={{fontWeight: '700'}}> 0.0</span> as your answer
         </div>
         <div style={styles.subDirections}>
           • Please turn your volume on your computer up, and please do not go back in your browser. 
