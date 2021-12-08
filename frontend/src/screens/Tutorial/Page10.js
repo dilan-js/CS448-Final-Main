@@ -32,13 +32,14 @@ export default function Page10({dispatchPageIndex}) {
       <CustomNavbar />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={styles.directions}>
-          Question 1: What is bar B in terms of bar A?
+          Question 1: How much taller is the taller bar than the shorter bar? 
         </div>
+        <div>Please enter an answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Form onSubmit={handleSubmit}>
           <div style={styles.form}>
 
-        <FloatingLabel controlId="floatingTextarea2" label="Enter your answer here">
+        <FloatingLabel  controlId="floatingTextarea2" label="Enter your answer here">
         <Form.Control
           as="textarea"
           onChange={handleOnChange}

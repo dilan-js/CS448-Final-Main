@@ -63,6 +63,8 @@ const handleOnChange = (e) => {
         <div style={styles.directions}>
         Question {questionIndex+1}: {questionTitle}
         </div>
+        <div>Please enter an answer to the nearest tenth decimal place.</div>
+
         <div style={styles.main}>
         <Form onSubmit={handleSubmit}>
           <div style={styles.form}>

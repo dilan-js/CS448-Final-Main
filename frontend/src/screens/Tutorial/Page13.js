@@ -33,9 +33,10 @@ export default function Page13({dispatchPageIndex}) {
     <>
       <CustomNavbar />
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={styles.directions}>
-          Question 2: What is bar B in terms of bar A?
+      <div style={styles.directions}>
+          Question 1: How much taller is the taller bar than the shorter bar? 
         </div>
+        <div>Please enter an answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Form onSubmit={handleSubmit}>
           <div style={styles.form}>
