@@ -24,7 +24,7 @@ export default function Page11({dispatchPageIndex}) {
           <div>Please enter an <span style={{fontWeight: '700'}}>numerical</span> answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Image style={styles.img} src={Graph} />
-        <AnswerExample answer="2x"/>
+        <AnswerExample answer="4.8x"/>
         </div>
         <Button
           onClick={handleSubmit}
