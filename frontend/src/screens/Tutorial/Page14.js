@@ -6,7 +6,7 @@ import {
 import {useHistory} from 'react-router-dom';
 import CustomNavbar from "../../components/CustomNavbar";
 
-import Graph from "../../assets/dns2.png";
+import Graph from "../../assets/0dns5.png";
 import AnswerExample from './AnswerExample';
 
 export default function Page14({dispatchPageIndex}) {
@@ -26,7 +26,7 @@ export default function Page14({dispatchPageIndex}) {
         <div>Please enter an <span style={{fontWeight: '700'}}>numerical</span> answer to the nearest tenth decimal place.</div>
         <div style={styles.main}>
         <Image style={styles.img} src={Graph} />
-        <AnswerExample answer="4.8x"/>
+        <AnswerExample answer="4.6x"/>
         </div>
         <Button
           onClick={() => history.push("/begin")}

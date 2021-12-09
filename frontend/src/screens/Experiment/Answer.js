@@ -48,7 +48,7 @@ const handleOnChange = (e) => {
     //  alert(questionIndex);
       setCurrentStep("Question");
       if(questionIndex < 27){
-        alert("QUESTION INDEX 27")
+       // alert("QUESTION INDEX 27")
         dispatchQuestionIndex({type: 'next'});
       }else{
         history.push("/the-end");

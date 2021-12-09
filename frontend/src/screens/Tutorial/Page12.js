@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
 import { useHistory } from "react-router-dom";
-import Graph from "../../assets/dns2.png";
+import Graph from "../../assets/0dns5.png";
 
 import {useAudioPlayer} from "react-use-audio-player";
 

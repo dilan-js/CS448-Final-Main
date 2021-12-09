@@ -24,7 +24,7 @@ export default function DirectionsTwo() {
         </div>
         <div style={styles.subDirections}>
           • We will ask for a numerical answer; if you believe the bars are equal in height, please put 
-         <span style={{fontWeight: '700'}}> 0.0</span> as your answer
+         <span style={{fontWeight: '700'}}> 1.0</span> as your answer
         </div>
         <div style={styles.subDirections}>
           • Please turn your volume on your computer up, and please do not go back in your browser. 

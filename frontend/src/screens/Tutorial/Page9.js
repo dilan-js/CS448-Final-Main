@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image, InputGroup, Button, FormControl } from "react-bootstrap";
 import CustomNavbar from "../../components/CustomNavbar";
-import Graph from "../../assets/ds0.png";
+import Graph from "../../assets/0dns2.png";
 
 import {useAudioPlayer} from "react-use-audio-player";
 
@@ -48,7 +48,7 @@ export default function Page9({dispatchPageIndex}) {
         <>
           <CustomNavbar />
           <div style={styles.directions}>
-          Question 1: How much taller is the taller bar than the shorter bar? 
+          Question 1: How many times taller is the taller bar compared to the shorter one?
           </div>
           <div style={styles.main}>
             <Image style={styles.img} src={Graph} />
